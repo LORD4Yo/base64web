@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: url("back.png") no-repeat;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: transparent;
+    background: url("back.png") no-repeat;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+header ul {
+    list-style: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+header li {
+    display: inline-block; /* Inline block to allow padding and margins */
+    margin: 0 15px; /* Space between tabs */
+}
+
+/* Style for the links inside the list items */
+header a {
+    display: inline-block; /* Ensure the link is an inline-block element */
+    background: transparent; /* Semi-transparent background color */
+    color: #fff; /* White text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 1.2em; /* Larger font size */
+    padding: 10px 20px; /* Padding inside the tabs */
+    border-radius: 8px; /* Rounded corners */
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
+    backdrop-filter: blur(10px); /* Background blur effect */
+}
+
+/* Add a background color on hover */
+header a:hover {
+    background: transparent; /* Solid background on hover */
+    transform: scale(1.05); /* Slightly enlarge the tab on hover */
+}
+
+/* Add an active state for the selected tab */
+header a.active {
+    background: rgba(51, 51, 51, 1); /* Solid background for the active tab */
+    color: #fff; /* White text for better contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow for emphasis */
+}
+/* Flex container to align sections side-by-side */
+.container {
+    display: flex;
+    justify-content: center; /* Center sections horizontally */
+    gap: 110px; /* Space between the sections */
+    margin: 20px auto; /* Center the container */
+}
+
+/* Shared styles for sections */
+section {
+    width: 300px; /* Fixed width */
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2); /* Transparent white background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 3D box effect */
+    backdrop-filter: blur(10px); /* Full blur effect */
+    animation: colorShift 5s infinite alternate; /* Animation for color transition */
+    position: relative; /* For positioning of pseudo-elements */
+    overflow: hidden;
+}
+
+/* Specific styles for each section */
+.decode-text {
+    display: block;
+}
+
+.encode-text {
+    display: none; /* Hide by default */
+}
+
+textarea {
+    width: calc(100% - 20px); /* Adjust width to account for padding */
+    height: 100px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Semi-transparent border */
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8); /* Slightly opaque background */
+    box-sizing: border-box;
+}
+
+button {
+    background: rgba(51, 51, 51, 0.8); /* Semi-transparent button background */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition effects */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background: rgba(51, 51, 51, 1); /* Solid background on hover */
+    transform: scale(1.05);
+}
+
+pre {
+    background: rgba(240, 240, 240, 0.9); /* Slightly opaque background */
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+h2 {
+    border-bottom: 2px solid rgba(128, 0, 128, 0.8); /* Purple border */
+    padding-bottom: 5px;
+    color: #eee;
+    margin-top: 0;
+}
+
+@keyframes colorShift {
+    0% {
+        background-color: rgba(128, 0, 128, 0.2); /* Light purple */
+    }
+    100% {
+        background-color: rgba(0, 128, 128, 0.2); /* Light teal */
+    }
+}
+
+p {
+    margin: 0;
+}

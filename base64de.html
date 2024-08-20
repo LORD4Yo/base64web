@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="base64.css">
+    <title>BASE64 Decode and Encode</title>
+</head>
+<body>
+    <header>
+        <h1>BASE64</h1>
+        <li><a href="#" id="decodeTab">Decode</a></li>
+        <li><a href="#" id="encodeTab">Encode</a></li>
+    </header>
+
+    <div class="container">
+        <section class="decode-text" id="decodeSection">
+            <h2>Decode from Base64 format</h2>
+            <textarea id="decodeInput" placeholder="Type (or paste) here..."></textarea>
+            <button id="decodeButton">Decode</button>
+            <h3>Decoded Result</h3>
+            <textarea  id="decodeOutput" placeholder="Decode here"></textarea>
+        </section>
+
+        <section class="encode-text" id="encodeSection" style="display: none;">
+            <h2>Encode to Base64 format</h2>
+            <textarea id="encodeInput" placeholder="Type (or paste) here..."></textarea>
+            <button id="encodeButton">Encode</button>
+            <h3>Encoded Result</h3>
+            <textarea  id="encodeOutput" placeholder="Encode Here"></textarea>
+        </section>
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get elements by ID
+        const decodeTab = document.getElementById('decodeTab');
+        const encodeTab = document.getElementById('encodeTab');
+        const decodeSection = document.getElementById('decodeSection');
+        const encodeSection = document.getElementById('encodeSection');
+
+        // Function to show the decode section and hide the encode section
+        function showDecode() {
+            decodeSection.style.display = 'block';
+            encodeSection.style.display = 'none';
+        }
+
+        // Function to show the encode section and hide the decode section
+        function showEncode() {
+            decodeSection.style.display = 'none';
+            encodeSection.style.display = 'block';
+        }
+
+        // Event listeners for the tabs
+        decodeTab.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            showDecode();
+        });
+
+        encodeTab.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            showEncode();
+        });
+
+        // Show the decode section by default
+        showDecode();
+
+        // Existing encoding/decoding functions
+        document.getElementById('decodeButton').addEventListener('click', function() {
+            const input = document.getElementById('decodeInput').value;
+            try {
+                const output = atob(input);
+                document.getElementById('decodeOutput').textContent = output;
+            } catch (e) {
+                document.getElementById('decodeOutput').textContent = 'Invalid Base64 input.';
+            }
+        });
+
+        document.getElementById('encodeButton').addEventListener('click', function() {
+            const input = document.getElementById('encodeInput').value;
+            const output = btoa(input);
+            document.getElementById('encodeOutput').textContent = output;
+        });
+
+        document.getElementById('fileDecodeButton').addEventListener('click', function() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const result = event.target.result;
+                    try {
+                        const decoded = atob(result);
+                        const blob = new Blob([decoded], { type: 'text/plain' });
+                        const link = document.createElement('a');
+                        link.href = URL.createObjectURL(blob);
+                        link.download = 'decoded.txt';
+                        link.click();
+                    } catch (e) {
+                        alert('Invalid Base64 content in file.');
+                    }
+                };
+                reader.readAsText(file);
+            } else {
+                alert("No file chosen");
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>
